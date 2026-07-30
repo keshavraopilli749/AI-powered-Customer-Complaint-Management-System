@@ -1,14 +1,42 @@
 import axios from 'axios';
-import { setupInterceptors } from './request';
+import { API_BASE_URL } from '../constants/apiEndpoints';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
-
-export const apiClient = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  timeout: 10000,
+/**
+ * Global Axios instance configured for the FastAPI backend.
+ */
+const api = axios.create({
+    baseURL: API_BASE_URL,
+    timeout: 30000, // AI processing can take time, set a generous timeout
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
 });
 
-setupInterceptors(apiClient);
+// Request Interceptor: Attach Auth tokens here in the future
+api.interceptors.request.use(
+    (config) => {
+        // const token = localStorage.getItem('token');
+        // if (token) {
+        //     config.headers.Authorization = `Bearer ${token}`;
+        // }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
+// Response Interceptor: Global error logging or token refresh
+api.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        // Could dispatch global error notifications here
+        console.error("API Error intercepted:", error);
+        return Promise.reject(error);
+    }
+);
+
+export default api;
