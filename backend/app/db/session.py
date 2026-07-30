@@ -1,16 +1,17 @@
-"""
-Database session management.
-Placeholder for SQLAlchemy Engine, SessionLocal, and get_db dependency.
-"""
+from typing import Generator
 import logging
+from sqlalchemy.orm import Session
+from .database import SessionLocal
 
 logger = logging.getLogger("qms_api")
 
-def get_db():
+def get_db() -> Generator[Session, None, None]:
     """
     FastAPI dependency to inject the database session.
     Yields a SQLAlchemy session and closes it after the request.
     """
-    # Placeholder: yield db_session
-    logger.info("Providing DB session placeholder")
-    yield None
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
