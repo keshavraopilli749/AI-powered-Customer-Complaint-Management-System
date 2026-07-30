@@ -1,0 +1,29 @@
+.panelContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  height: 100%;
+  width: 100%;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  overflow-y: auto;
+  padding-right: var(--spacing-sm);
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  overflow-y: auto;
+  padding-right: var(--spacing-sm);
+}
+
+@media (max-width: 1024px) {
+  .panelContainer {
+    grid-template-columns: 1fr;
+  }
+}

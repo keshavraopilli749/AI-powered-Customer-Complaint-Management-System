@@ -1,0 +1,90 @@
+.timelineCard {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.title {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: var(--spacing-md);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background-color: var(--color-border);
+  z-index: 0;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.iconWrapper {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: var(--color-surface);
+  border: 2px solid;
+}
+
+.completed .iconWrapper {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.active .iconWrapper {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.pending .iconWrapper {
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepTitle {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-main);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.pending .stepTitle {
+  color: var(--color-text-muted);
+}
+
+.stepTime {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
