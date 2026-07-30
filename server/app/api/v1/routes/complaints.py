@@ -8,7 +8,7 @@ from app.schemas.complaint import ComplaintCreate, ComplaintUpdate, ComplaintRes
 from app.schemas.response import SuccessResponse, PaginatedResponse
 from app.services.complaint_service import ComplaintService
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_current_user)])
 
 def get_complaint_service(db: Session = Depends(get_db)) -> ComplaintService:
     return ComplaintService(db)
