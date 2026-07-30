@@ -4,10 +4,10 @@ This document contains expected questions and scripted answers to help you ace y
 
 ## 1. Project Architecture & Decisions
 
-**Q: Why did you choose FastAPI for the backend?**
-*Answer:* I chose FastAPI because it is incredibly fast (built on Starlette and Pydantic) and natively supports asynchronous programming (`async/await`), which is crucial when making blocking network calls to external LLMs like Groq. Furthermore, it automatically generates OpenAPI (Swagger) documentation, saving development time and making frontend integration seamless.
+**Q: Why did you choose FastAPI for the server?**
+*Answer:* I chose FastAPI because it is incredibly fast (built on Starlette and Pydantic) and natively supports asynchronous programming (`async/await`), which is crucial when making blocking network calls to external LLMs like Groq. Furthermore, it automatically generates OpenAPI (Swagger) documentation, saving development time and making client integration seamless.
 
-**Q: Why React with Redux Toolkit for the frontend?**
+**Q: Why React with Redux Toolkit for the client?**
 *Answer:* React provides a component-driven architecture that is perfect for a complex dashboard. I paired it with Redux Toolkit because managing the state of an asynchronous AI pipeline (Uploading -> Extracting -> Validating -> Risk Assessment) across multiple components can get messy with just Context API. Redux Toolkit provides clean, predictable state management.
 
 **Q: Explain your database design.**
@@ -27,7 +27,7 @@ This document contains expected questions and scripted answers to help you ace y
 ## 3. DevOps & Security
 
 **Q: How is the application secured?**
-*Answer:* It uses JWT (JSON Web Tokens) for stateless authentication. Passwords are mathematically hashed using `bcrypt` via `passlib`. The FastAPI backend uses dependency injection (`Depends(get_current_user)`) to reject any request lacking a valid token. On the frontend, React Router is wrapped in a `ProtectedRoute` component that forces unauthenticated users to the login screen.
+*Answer:* It uses JWT (JSON Web Tokens) for stateless authentication. Passwords are mathematically hashed using `bcrypt` via `passlib`. The FastAPI server uses dependency injection (`Depends(get_current_user)`) to reject any request lacking a valid token. On the client, React Router is wrapped in a `ProtectedRoute` component that forces unauthenticated users to the login screen.
 
 **Q: How would you deploy this to production?**
-*Answer:* The entire stack is containerized using Docker and orchestrated via Docker Compose. The frontend is built into static assets and served by Nginx, while the backend runs on Uvicorn. The `docker-compose.yml` links them to a PostgreSQL container. In a real enterprise, I would deploy these containers to a managed service like AWS ECS or Kubernetes, using GitHub Actions for the CI/CD pipeline.
+*Answer:* The entire stack is containerized using Docker and orchestrated via Docker Compose. The client is built into static assets and served by Nginx, while the server runs on Uvicorn. The `docker-compose.yml` links them to a PostgreSQL container. In a real enterprise, I would deploy these containers to a managed service like AWS ECS or Kubernetes, using GitHub Actions for the CI/CD pipeline.

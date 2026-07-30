@@ -1,17 +1,17 @@
 # 13. SYSTEM ARCHITECTURE
 
-A robust, enterprise-grade architecture separating concerns into Frontend, Backend, AI Layer, and Database.
+A robust, enterprise-grade architecture separating concerns into client, server, AI Layer, and Database.
 
 ```mermaid
 graph TD
-    subgraph Frontend [React + Vite UI]
+    subgraph client [React + Vite UI]
         A[Web Application]
         B[Dashboard]
         C[Complaint Forms]
         D[AI Copilot Chat]
     end
 
-    subgraph Backend [FastAPI Server]
+    subgraph server [FastAPI Server]
         E[API Gateway]
         F[Auth / RBAC Service]
         G[Complaint Service]
@@ -49,8 +49,8 @@ graph TD
 ```
 
 ## Component Breakdown
-*   **Frontend (React/Vite):** Delivers a fast, responsive Single Page Application (SPA). Handles client-side validation and rich UI interactions.
-*   **Backend (FastAPI):** Python-based asynchronous framework. Acts as the orchestrator. Validates inputs (Pydantic), manages business logic, enforces 21 CFR Part 11 electronic signatures, and communicates with the database.
+*   **client (React/Vite):** Delivers a fast, responsive Single Page Application (SPA). Handles client-side validation and rich UI interactions.
+*   **server (FastAPI):** Python-based asynchronous framework. Acts as the orchestrator. Validates inputs (Pydantic), manages business logic, enforces 21 CFR Part 11 electronic signatures, and communicates with the database.
 *   **AI Layer (LangGraph + Groq):** LangGraph manages the agentic workflow (e.g., routing an uploaded PDF to the extraction tool, then summarizing it). Groq provides ultra-fast LLM inference (e.g., Llama 3) necessary for real-time user assistance.
 *   **Database (PostgreSQL + pgvector):** PostgreSQL stores structured relational data (complaints, users, audit logs). `pgvector` enables semantic search, allowing the AI to find "similar complaints" using embeddings.
 *   **Storage (S3):** Secure, immutable storage for attachments and evidentiary files.
@@ -114,8 +114,8 @@ Enterprise pharmaceutical systems require military-grade security.
 *   **Authentication:** JWT (JSON Web Tokens) with 15-minute expiration and secure HttpOnly refresh tokens. Integration with Corporate Active Directory / SAML.
 *   **Authorization (RBAC):** Middleware checks the user's role on every API request. A Customer Care Rep hitting `PATCH /api/complaints/1/status` to 'Close' will receive a `403 Forbidden`.
 *   **Audit Logs (Part 11):** Implemented at the database ORM level (e.g., SQLAlchemy Event Listeners). Any change to a model automatically writes a diff to the `AuditLog` table. This cannot be bypassed by application code.
-*   **Electronic Signatures:** For critical transitions (e.g., Approving an Investigation), the frontend requires the user to re-type their password. The backend verifies the password before committing the status change.
-*   **File Upload Validation:** All uploaded files are scanned for malware using a backend service (e.g., ClamAV) and strictly checked against allowed MIME types (PDF, JPG, PNG).
+*   **Electronic Signatures:** For critical transitions (e.g., Approving an Investigation), the client requires the user to re-type their password. The server verifies the password before committing the status change.
+*   **File Upload Validation:** All uploaded files are scanned for malware using a server service (e.g., ClamAV) and strictly checked against allowed MIME types (PDF, JPG, PNG).
 *   **Secrets Management:** API keys (Groq, Database credentials) are never hardcoded. They are injected via secure environment variables (`.env`) or AWS Secrets Manager.
 
 ---
@@ -148,7 +148,7 @@ A clean, enterprise UI designed for data density and reduced cognitive load.
 
 ## Phase 1: Research & Scaffolding (Days 1-2)
 *   Finalize software requirements and domain research.
-*   Scaffold React (Vite) frontend and FastAPI backend.
+*   Scaffold React (Vite) client and FastAPI server.
 *   Design database schema (`schema.sql`).
 
 ## Phase 2: Core Infrastructure (Days 3-5)
@@ -157,14 +157,14 @@ A clean, enterprise UI designed for data density and reduced cognitive load.
 *   Implement the universal Audit Log mechanism (21 CFR Part 11 backbone).
 
 ## Phase 3: Complaint Module CRUD (Days 6-8)
-*   Build backend REST APIs for creating, reading, and updating complaints.
-*   Develop the Frontend Dashboard and Complaint Intake forms.
+*   Build server REST APIs for creating, reading, and updating complaints.
+*   Develop the client Dashboard and Complaint Intake forms.
 *   Implement state machine for workflow status transitions.
 
 ## Phase 4: AI Integration (Days 9-11)
 *   Integrate LangGraph and Groq APIs.
 *   Build AI endpoints (`/extract`, `/summarize`, `/chat`).
-*   Wire AI responses directly into the frontend form UI (e.g., "Auto-fill with AI" button).
+*   Wire AI responses directly into the client form UI (e.g., "Auto-fill with AI" button).
 
 ## Phase 5: Polish & Testing (Days 12-13)
 *   Implement UI refinements (Vanilla CSS, loading states, error handling).
@@ -172,7 +172,7 @@ A clean, enterprise UI designed for data density and reduced cognitive load.
 *   Perform security checks (input validation, RBAC verification).
 
 ## Phase 6: Deployment & Demo (Day 14)
-*   Deploy backend (Render/Heroku/AWS).
-*   Deploy frontend (Vercel/Netlify).
+*   Deploy server (Render/Heroku/AWS).
+*   Deploy client (Vercel/Netlify).
 *   Seed database with realistic pharmaceutical dummy data for the presentation.
 *   Prepare Demo Script focusing on the "Aha!" moments of AI integration.

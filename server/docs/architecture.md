@@ -2,7 +2,7 @@
 
 The AI-powered Customer Complaint Management System follows a modern decoupled architecture.
 
-## 1. Frontend Layer (React + Redux)
+## 1. client Layer (React + Redux)
 - Built with React 19 and Vite for lightning-fast HMR.
 - Uses Redux Toolkit for global state (Auth, AI Processing).
 - Communicates exclusively via REST API using Axios.
@@ -24,5 +24,5 @@ The AI-powered Customer Complaint Management System follows a modern decoupled a
 
 ## 5. Deployment Layer (Docker)
 - Fully containerized using Docker Compose.
-- Backend runs on `uvicorn`.
-- Frontend is compiled to static files and served by `nginx`.
+- server runs on `uvicorn`.
+- client is compiled to static files and served by `nginx`.

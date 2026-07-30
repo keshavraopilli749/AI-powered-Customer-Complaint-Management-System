@@ -14,8 +14,8 @@ This guide explains how to run the AI-powered Customer Complaint Management Syst
 Ensure PostgreSQL is running on your machine.
 Create a database for the project (e.g., `qms_db`).
 
-### 2. Backend API
-1. Open a terminal in the `backend/` folder.
+### 2. server API
+1. Open a terminal in the `server/` folder.
 2. Create and activate a virtual environment:
    ```bash
    python -m venv venv
@@ -34,10 +34,10 @@ Create a database for the project (e.g., `qms_db`).
    ```bash
    uvicorn app.main:app --reload
    ```
-   The backend will be live at `http://localhost:8000`.
+   The server will be live at `http://localhost:8000`.
 
-### 3. Frontend React App
-1. Open a new terminal in the `frontend/` folder.
+### 3. client React App
+1. Open a new terminal in the `client/` folder.
 2. Install dependencies:
    ```bash
    npm install
@@ -46,8 +46,8 @@ Create a database for the project (e.g., `qms_db`).
    ```bash
    npm run dev
    ```
-   The frontend will be live at `http://localhost:3000`.
+   The client will be live at `http://localhost:3000`.
 
 ## Future Enhancements
 *   **Docker Containerization**: Wrapping the application in a `docker-compose.yml` for unified, OS-agnostic deployment.
-*   **Cloud Deployment**: Hosting the frontend on Vercel/Netlify and the backend on Render/Railway.
+*   **Cloud Deployment**: Hosting the client on Vercel/Netlify and the server on Render/Railway.

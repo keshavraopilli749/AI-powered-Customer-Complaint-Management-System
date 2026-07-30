@@ -1,6 +1,6 @@
 # API Documentation
 
-The backend exposes a fully typed REST API with automatic Swagger UI documentation.
+The server exposes a fully typed REST API with automatic Swagger UI documentation.
 
 ## Accessing Swagger UI
 When running locally, visit: `http://localhost:8000/docs`
