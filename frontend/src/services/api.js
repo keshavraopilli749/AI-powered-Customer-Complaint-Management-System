@@ -13,13 +13,14 @@ const api = axios.create({
     }
 });
 
-// Request Interceptor: Attach Auth tokens here in the future
+// Request Interceptor
 api.interceptors.request.use(
     (config) => {
-        // const token = localStorage.getItem('token');
-        // if (token) {
-        //     config.headers.Authorization = `Bearer ${token}`;
-        // }
+        // Automatically inject JWT token if it exists
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
         return config;
     },
     (error) => {

@@ -3,11 +3,12 @@ from sqlalchemy.orm import Session
 from typing import Optional, List
 from uuid import UUID
 from app.api.dependencies import get_db
+from app.auth.dependencies import get_current_user
 from app.schemas.complaint import ComplaintCreate, ComplaintUpdate, ComplaintResponse
 from app.schemas.response import SuccessResponse, PaginatedResponse
 from app.services.complaint_service import ComplaintService
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_current_user)])
 
 def get_complaint_service(db: Session = Depends(get_db)) -> ComplaintService:
     return ComplaintService(db)

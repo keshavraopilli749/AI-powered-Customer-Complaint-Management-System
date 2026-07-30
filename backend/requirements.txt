@@ -8,6 +8,9 @@ psycopg2-binary>=2.9.9
 langgraph>=0.0.66
 langchain-groq>=0.1.5
 langchain-core>=0.2.10
+passlib[bcrypt]>=1.7.4
+PyJWT>=2.8.0
+python-multipart>=0.0.9
 python-dotenv==1.0.1
 loguru==0.7.2
 pytest==8.2.0

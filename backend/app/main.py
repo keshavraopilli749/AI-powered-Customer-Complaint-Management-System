@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="AI-powered Customer Complaint Management System API")
 
+from app.api.v1.api import api_router
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
@@ -11,6 +13,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(api_router, prefix="/api/v1")
 
 @app.get("/")
 def read_root():
