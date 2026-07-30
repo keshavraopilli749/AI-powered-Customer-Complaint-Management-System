@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import GlobalLayout from '@/components/layout/GlobalLayout';
+import { GlobalLayout } from '@/components/layout';
 
 // Lazy load pages for performance
 const Dashboard = lazy(() => import('@/pages/Dashboard'));

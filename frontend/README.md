@@ -4,71 +4,52 @@ This document outlines the foundation of our enterprise-grade React (Vite) front
 
 ## 1. Folder Structure
 
-```
+```text
 frontend/
-├── public/                 # Static assets that don't need module processing
+├── public/
 ├── src/
-│   ├── assets/             # Icons, images, and global CSS styles
-│   ├── components/         # Reusable React components
-│   │   ├── layout/         # Structural components (Sidebar, Navbar, GlobalLayout)
-│   │   ├── common/         # Domain-agnostic components (e.g., specific wrappers)
-│   │   ├── ui/             # Reusable UI kit (Buttons, Inputs, Modals)
-│   │   ├── dashboard/      # Dashboard-specific widgets
-│   │   ├── complaint/      # Complaint-specific components
-│   │   └── ai/             # AI Copilot components
-│   ├── constants/          # Application-wide magic strings and enums
-│   ├── hooks/              # Custom React hooks (useDebounce, useModal)
-│   ├── pages/              # Route-level container components (Dashboard, Complaint, Settings)
-│   ├── redux/              # Global state management (store, slices)
-│   ├── routes/             # React Router configuration
-│   ├── services/           # Axios API instances and interceptors
-│   ├── utils/              # Pure functions, formatters, and validators
-│   ├── App.jsx             # Main application wrapper (Providers)
-│   └── main.jsx            # React mounting point
-├── .env                    # Environment variables
-├── .eslintrc.cjs           # ESLint configuration
-├── .prettierrc             # Prettier configuration
-├── package.json            # Dependencies and npm scripts
-└── vite.config.js          # Vite configuration
+│   ├── assets/
+│   ├── components/
+│   │   ├── layout/         # Enterprise Layout Architecture
+│   │   │   ├── Sidebar/    # Collapsible left navigation
+│   │   │   ├── Navbar/     # Top navigation with search & profile
+│   │   │   ├── PageLayout/ # Main wrapper (Layout, PageHeader, Content)
+│   │   │   ├── Breadcrumb/
+│   │   │   └── Footer/
+│   │   ├── common/
+│   │   ├── ui/
+│   │   ├── dashboard/
+│   │   ├── complaint/
+│   │   └── ai/
+│   ├── constants/
+│   ├── hooks/
+│   ├── pages/
+│   ├── redux/
+│   ├── routes/
+│   ├── services/
+│   ├── utils/
+│   ├── App.jsx
+│   └── main.jsx
+├── .env
+├── .eslintrc.cjs
+├── .prettierrc
+├── package.json
+└── vite.config.js
 ```
 
-## 2. File Structure & Purpose
+## 2. Layout Architecture (Section 3)
 
-- **`vite.config.js`**: Configures the dev server, aliases (using `@` for `src/`), and build pipeline.
-- **`src/assets/styles/variables.css`**: The core design token system (colors, typography, spacing).
-- **`src/routes/AppRoutes.jsx`**: Centralized routing using `react-router-dom` with lazy loading for code splitting.
-- **`src/redux/store.js`**: Combines all RTK slices into a single global store.
-- **`src/services/api.js`**: The base Axios client pre-configured with headers and base URLs.
+We have implemented a classic enterprise SaaS layout shell (resembling platforms like Salesforce or Jira):
+- **Sidebar (`Sidebar.jsx`)**: A responsive, collapsible left navigation menu using `lucide-react` icons. On mobile, this converts into a fixed overlay drawer.
+- **Navbar (`Navbar.jsx`)**: A fixed top bar housing global search, notifications, theme toggle, and the user profile dropdown.
+- **PageLayout (`Layout.jsx`)**: The master wrapper that coordinates the Sidebar and Navbar, dynamically adjusting the `Content` area based on the Sidebar's collapsed state.
+- **PageHeader (`PageHeader.jsx`)**: A highly reusable component placed at the top of every page route to display the breadcrumb, title, subtitle, and primary actions (e.g., "Save Draft").
 
-## 3. Dependencies
-
-*   **React 19 & Vite**: Fast, modern UI development.
-*   **React Router DOM**: Client-side routing.
-*   **Redux Toolkit (RTK) & React-Redux**: Standardized, predictable global state management.
-*   **Axios**: Promise-based HTTP client for API requests.
-*   **React Hook Form**: Performant, flexible, and extensible forms with easy-to-use validation.
-*   **ESLint & Prettier**: Code quality and automatic formatting.
+## 3. Global Styling & CSS Modules
+We use strict CSS Modules for all components to prevent global namespace collisions. Design tokens (colors, spacing, typography) are governed by `src/assets/styles/variables.css`.
 
 ## 4. Installation & Initialization
-
 ```bash
-# Install dependencies
 npm install
-
-# Start the development server
 npm run dev
 ```
-
-## 5. Best Practices & Naming Conventions
-
-*   **Components**: PascalCase (e.g., `ComplaintForm.jsx`).
-*   **Hooks**: camelCase starting with `use` (e.g., `useDebounce.js`).
-*   **Utilities**: camelCase (e.g., `validation.js`).
-*   **Imports**: Use the `@/` alias for absolute imports from the `src/` directory to prevent `../../` hell.
-*   **CSS**: Use CSS Modules (`Component.module.css`) to scope styles locally and prevent global namespace clashes.
-
-## 6. Future Scalability Recommendations
-
-*   **Data Fetching**: As the application grows, consider migrating standard API calls to **RTK Query** or **React Query** for built-in caching, polling, and invalidation.
-*   **Testing**: Implement Jest and React Testing Library. Add a `__tests__` folder inside each feature directory.
-*   **Storybook**: For the `components/ui/` kit, introduce Storybook to independently develop and document UI components.
