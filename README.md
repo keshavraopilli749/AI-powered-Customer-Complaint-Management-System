@@ -26,6 +26,7 @@ An enterprise-grade, full-stack application designed to automate the intake, ext
     ```
 3.  **Run the application**:
     ```bash
+    cd backend
     ./scripts/start.sh
     # OR manually: docker compose up -d --build
     ```
@@ -34,9 +35,9 @@ The application will be available at `http://localhost:3000`.
 API Documentation (Swagger UI) is available at `http://localhost:8000/docs`.
 
 ## 📚 Documentation
-Detailed documentation is available in the `docs/` directory:
-*   [System Architecture](docs/architecture.md)
-*   [AI Workflow (LangGraph)](docs/ai-workflow.md)
-*   [API Documentation](docs/api.md)
-*   [Deployment Guide](docs/deployment.md)
-*   [AIVOA Interview Preparation Guide](docs/interview-guide.md)
+Detailed documentation is available in the `backend/docs/` directory:
+*   [System Architecture](backend/docs/architecture.md)
+*   [AI Workflow (LangGraph)](backend/docs/ai-workflow.md)
+*   [API Documentation](backend/docs/api.md)
+*   [Deployment Guide](backend/docs/deployment.md)
+*   [AIVOA Interview Preparation Guide](backend/docs/interview-guide.md)
