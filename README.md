@@ -1,11 +1,42 @@
-# AI-powered Customer Complaint Management System
+# AI-Powered Pharmaceutical Customer Complaint Management System (QMS)
 
-This project is an AI-powered customer complaint management system featuring a frontend built with React (Vite) and a backend API built with FastAPI. It handles incoming customer complaints, potentially integrating with AI services for categorization and response generation.
+An enterprise-grade, full-stack application designed to automate the intake, extraction, and risk assessment of pharmaceutical customer complaints using Artificial Intelligence.
 
-## Project Structure
+## 🚀 Features
+*   **AI Document Processing**: Upload PDFs, Images, or Emails. LangGraph and Groq instantly extract structured data (Product, Batch, Description).
+*   **Automated Risk Assessment**: The AI analyzes the complaint text to determine Patient and Regulatory Risk levels (High, Medium, Low) and suggests CAPA (Corrective and Preventive Actions).
+*   **Enterprise Dashboard**: A beautiful, responsive dashboard built in React to track complaint volumes, statuses, and trends.
+*   **Robust Security**: JWT Authentication and Role-Based Access Control (RBAC).
+*   **Fully Dockerized**: Spin up the Frontend, Backend, and PostgreSQL database with a single command.
 
-```text
-frontend/          # React (Vite) UI
-backend/           # FastAPI application
-database/          # Database schemas and scripts
-```
+## 🛠️ Technology Stack
+*   **Frontend**: React 19, Vite, Redux Toolkit, React Router, CSS Modules.
+*   **Backend**: FastAPI, SQLAlchemy, Pydantic, Pytest.
+*   **AI Engine**: LangGraph, LangChain, Groq API.
+*   **Database**: PostgreSQL 15.
+*   **DevOps**: Docker, Docker Compose, GitHub Actions.
+
+## 🏃 Quick Start (Docker)
+
+1.  **Clone the repository**
+2.  **Configure Environment Variables**:
+    ```bash
+    cp .env.example .env
+    # Edit .env and insert your GROQ_API_KEY
+    ```
+3.  **Run the application**:
+    ```bash
+    ./scripts/start.sh
+    # OR manually: docker compose up -d --build
+    ```
+
+The application will be available at `http://localhost:3000`.
+API Documentation (Swagger UI) is available at `http://localhost:8000/docs`.
+
+## 📚 Documentation
+Detailed documentation is available in the `docs/` directory:
+*   [System Architecture](docs/architecture.md)
+*   [AI Workflow (LangGraph)](docs/ai-workflow.md)
+*   [API Documentation](docs/api.md)
+*   [Deployment Guide](docs/deployment.md)
+*   [AIVOA Interview Preparation Guide](docs/interview-guide.md)
