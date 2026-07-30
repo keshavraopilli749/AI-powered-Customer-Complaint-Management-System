@@ -1,21 +1,16 @@
 import React from 'react';
 import { Content, PageHeader } from '@/components/layout';
-import { Button } from '@/components/ui/Button';
+import { ComplaintForm } from '@/components/complaint';
 
 const Complaint = () => {
   return (
     <>
       <PageHeader 
-        title="Customer Complaint" 
-        subtitle="Create or edit a product quality complaint."
-        actions={<Button variant="primary">Save Draft</Button>}
+        title="Customer Complaint Intake" 
+        subtitle="Log a new product quality complaint or adverse event."
       />
       <Content>
-        <div className="card">
-          <p style={{ color: 'var(--color-text-muted)' }}>
-            This is a placeholder for the Complaint Form. We will build the actual form in Section 4.
-          </p>
-        </div>
+        <ComplaintForm />
       </Content>
     </>
   );
