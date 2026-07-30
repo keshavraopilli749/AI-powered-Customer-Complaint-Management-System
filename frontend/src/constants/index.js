@@ -1,0 +1,7 @@
+export const APP_NAME = 'AI QMS Platform';
+export const COMPLAINT_STATUS = {
+  DRAFT: 'DRAFT',
+  UNDER_REVIEW: 'UNDER_REVIEW',
+  INVESTIGATING: 'INVESTIGATING',
+  CLOSED: 'CLOSED',
+};

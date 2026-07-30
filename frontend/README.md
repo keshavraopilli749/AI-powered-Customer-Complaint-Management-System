@@ -1,16 +1,74 @@
-# React + Vite
+# Frontend Architecture: AI-powered QMS
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This document outlines the foundation of our enterprise-grade React (Vite) frontend application.
 
-Currently, two official plugins are available:
+## 1. Folder Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```
+frontend/
+├── public/                 # Static assets that don't need module processing
+├── src/
+│   ├── assets/             # Icons, images, and global CSS styles
+│   ├── components/         # Reusable React components
+│   │   ├── layout/         # Structural components (Sidebar, Navbar, GlobalLayout)
+│   │   ├── common/         # Domain-agnostic components (e.g., specific wrappers)
+│   │   ├── ui/             # Reusable UI kit (Buttons, Inputs, Modals)
+│   │   ├── dashboard/      # Dashboard-specific widgets
+│   │   ├── complaint/      # Complaint-specific components
+│   │   └── ai/             # AI Copilot components
+│   ├── constants/          # Application-wide magic strings and enums
+│   ├── hooks/              # Custom React hooks (useDebounce, useModal)
+│   ├── pages/              # Route-level container components (Dashboard, Complaint, Settings)
+│   ├── redux/              # Global state management (store, slices)
+│   ├── routes/             # React Router configuration
+│   ├── services/           # Axios API instances and interceptors
+│   ├── utils/              # Pure functions, formatters, and validators
+│   ├── App.jsx             # Main application wrapper (Providers)
+│   └── main.jsx            # React mounting point
+├── .env                    # Environment variables
+├── .eslintrc.cjs           # ESLint configuration
+├── .prettierrc             # Prettier configuration
+├── package.json            # Dependencies and npm scripts
+└── vite.config.js          # Vite configuration
+```
 
-## React Compiler
+## 2. File Structure & Purpose
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **`vite.config.js`**: Configures the dev server, aliases (using `@` for `src/`), and build pipeline.
+- **`src/assets/styles/variables.css`**: The core design token system (colors, typography, spacing).
+- **`src/routes/AppRoutes.jsx`**: Centralized routing using `react-router-dom` with lazy loading for code splitting.
+- **`src/redux/store.js`**: Combines all RTK slices into a single global store.
+- **`src/services/api.js`**: The base Axios client pre-configured with headers and base URLs.
 
-## Expanding the Oxlint configuration
+## 3. Dependencies
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+*   **React 19 & Vite**: Fast, modern UI development.
+*   **React Router DOM**: Client-side routing.
+*   **Redux Toolkit (RTK) & React-Redux**: Standardized, predictable global state management.
+*   **Axios**: Promise-based HTTP client for API requests.
+*   **React Hook Form**: Performant, flexible, and extensible forms with easy-to-use validation.
+*   **ESLint & Prettier**: Code quality and automatic formatting.
+
+## 4. Installation & Initialization
+
+```bash
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+## 5. Best Practices & Naming Conventions
+
+*   **Components**: PascalCase (e.g., `ComplaintForm.jsx`).
+*   **Hooks**: camelCase starting with `use` (e.g., `useDebounce.js`).
+*   **Utilities**: camelCase (e.g., `validation.js`).
+*   **Imports**: Use the `@/` alias for absolute imports from the `src/` directory to prevent `../../` hell.
+*   **CSS**: Use CSS Modules (`Component.module.css`) to scope styles locally and prevent global namespace clashes.
+
+## 6. Future Scalability Recommendations
+
+*   **Data Fetching**: As the application grows, consider migrating standard API calls to **RTK Query** or **React Query** for built-in caching, polling, and invalidation.
+*   **Testing**: Implement Jest and React Testing Library. Add a `__tests__` folder inside each feature directory.
+*   **Storybook**: For the `components/ui/` kit, introduce Storybook to independently develop and document UI components.
