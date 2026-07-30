@@ -1,0 +1,45 @@
+.filter-panel {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.filter-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.filter-select {
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 0.875rem;
+    color: #1e293b;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.btn-filter-reset {
+    padding: 0.5rem 1rem;
+    background: none;
+    border: 1px solid transparent;
+    color: #3b82f6;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.btn-filter-reset:hover {
+    background-color: #eff6ff;
+}

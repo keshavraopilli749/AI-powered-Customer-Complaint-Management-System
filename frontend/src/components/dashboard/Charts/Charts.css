@@ -1,0 +1,78 @@
+.chart-placeholder {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 1rem;
+}
+
+.chart-mockup {
+    flex-grow: 1;
+    background-color: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    position: relative;
+    overflow: hidden;
+}
+
+.trend-chart-mockup .mock-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 100px;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.trend-chart-mockup .bar {
+    flex: 1;
+    background: #3b82f6;
+    opacity: 0.6;
+    border-radius: 4px 4px 0 0;
+}
+
+.donut-chart-mockup .donut-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 15px solid #ef4444;
+    border-top-color: #3b82f6;
+    border-right-color: #f59e0b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #475569;
+}
+
+.bar-chart-mockup {
+    align-items: stretch;
+    justify-content: space-evenly;
+    padding: 0 1rem;
+}
+
+.horizontal-bar {
+    height: 20px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.horizontal-bar .fill {
+    height: 100%;
+    background: #10b981;
+}
